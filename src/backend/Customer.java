@@ -3,8 +3,6 @@ package backend;
 import java.util.ArrayList;
 import java.sql.*;
 
-//
-
 public class Customer {
 
     private int idCustomer;
