@@ -10,7 +10,6 @@ public class DBHelper {
                 String url = "jdbc:mysql://localhost:3306/finalassignment";
                 String user = "root";
                 String password = "";
-                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 koneksi = DriverManager.getConnection(url, user, password);
             } catch (SQLException t) {
                 System.out.println("Connection Error...");
