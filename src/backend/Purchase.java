@@ -7,6 +7,7 @@ public class Purchase {
     private int idPurchase;
     private Customer customer = new Customer();
     private Game game = new Game();
+    private int qty;
     private String purchaseDate;
     private int totalPrice;
 
@@ -14,10 +15,12 @@ public class Purchase {
 
     }
 
-    public Purchase(int idPurchase, Customer customer, Game game, String purchaseDate, int totalPrice) {
+    // Updated constructor to include qty
+    public Purchase(int idPurchase, Customer customer, Game game, int qty, String purchaseDate, int totalPrice) {
         this.idPurchase = idPurchase;
         this.customer = customer;
         this.game = game;
+        this.qty = qty;
         this.purchaseDate = purchaseDate;
         this.totalPrice = totalPrice;
     }
@@ -46,6 +49,14 @@ public class Purchase {
         this.game = game;
     }
 
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
     public String getpurchaseDate() {
         return purchaseDate;
     }
@@ -68,6 +79,7 @@ public class Purchase {
                 + "t.idPurchase, "
                 + "c.idCustomer, c.customerName,"
                 + "g.idGame, g.gameTitle, "
+                + "t.qty, "
                 + "t.purchaseDate, t.totalPrice "
                 + "FROM purchase t "
                 + "LEFT JOIN customer c ON t.idCustomer = c.idCustomer "
@@ -79,6 +91,9 @@ public class Purchase {
                 purchase.setidPurchase(rs.getInt("idPurchase"));
                 purchase.getCustomer().setIdCustomer(rs.getInt("idCustomer"));
                 purchase.getGame().setIdGame(rs.getInt("idGame"));
+                
+                purchase.setQty(rs.getInt("qty"));
+
                 purchase.setpurchaseDate(rs.getString("purchaseDate"));
                 purchase.setTotalPrice(rs.getInt("totalPrice"));
 
@@ -97,6 +112,7 @@ public class Purchase {
                 + "t.idPurchase, "
                 + "c.idCustomer, c.customerName,"
                 + "g.idGame, g.gameTitle, "
+                + "t.qty, "
                 + "t.purchaseDate, t.totalPrice "
                 + "FROM purchase t "
                 + "LEFT JOIN customer c ON t.idCustomer = c.idCustomer "
@@ -108,10 +124,12 @@ public class Purchase {
                 purchase.setidPurchase(rs.getInt("idPurchase"));
                 purchase.getCustomer().setIdCustomer(rs.getInt("idCustomer"));
                 purchase.getGame().setIdGame(rs.getInt("idGame"));
+                
+                purchase.setQty(rs.getInt("qty"));
+                
                 purchase.setpurchaseDate(rs.getString("purchaseDate"));
                 purchase.setTotalPrice(rs.getInt("totalPrice"));
 
-                // Also populate names for the list
                 purchase.getCustomer().setCustomerName(rs.getString("customerName"));
                 purchase.getGame().setGameTitle(rs.getString("gameTitle"));
                 
@@ -129,6 +147,7 @@ public class Purchase {
                 + "t.idPurchase, "
                 + "c.idCustomer, c.customerName,"
                 + "g.idGame, g.gameTitle, "
+                + "t.qty, "
                 + "t.purchaseDate, t.totalPrice "
                 + "FROM purchase t "
                 + "LEFT JOIN customer c ON t.idCustomer = c.idCustomer "
@@ -145,6 +164,9 @@ public class Purchase {
                 purchase.getCustomer().setCustomerName(rs.getString("customerName"));
                 purchase.getGame().setIdGame(rs.getInt("idGame"));
                 purchase.getGame().setGameTitle(rs.getString("gameTitle"));
+                
+                purchase.setQty(rs.getInt("qty"));
+                
                 purchase.setpurchaseDate(rs.getString("purchaseDate"));
                 purchase.setTotalPrice(rs.getInt("totalPrice"));
                 Listpurchase.add(purchase);
@@ -157,16 +179,20 @@ public class Purchase {
 
     public void save() {
         if (getByID(idPurchase).getidPurchase() == 0) {
-            String query = "INSERT INTO purchase (idCustomer, idGame, purchaseDate, totalPrice) VALUES ("
+            // Added qty to INSERT statement
+            String query = "INSERT INTO purchase (idCustomer, idGame, qty, purchaseDate, totalPrice) VALUES ("
                     + this.customer.getIdCustomer() + ", "
                     + this.game.getIdGame() + ", '"
+                    + this.qty + "', '"
                     + this.purchaseDate + "', "
                     + this.totalPrice + ")";
             this.idPurchase = DBHelper.insertQueryGetId(query);
         } else {
+            // Added qty to UPDATE statement
             String query = "UPDATE purchase SET "
                     + "idCustomer = '" + this.customer.getIdCustomer() + "', "
                     + "idGame = '" + this.game.getIdGame() + "', "
+                    + "qty = '" + this.qty + "', "
                     + "purchaseDate = '" + this.purchaseDate + "', "
                     + "totalPrice = '" + this.totalPrice + "' "
                     + "WHERE idPurchase = '" + this.idPurchase + "'";
