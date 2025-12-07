@@ -85,7 +85,7 @@ public class Game {
     public Game getByID(int id) {
         Game game = new Game();
         ResultSet rs = DBHelper.selectQuery("SELECT "
-                + " g.idGame, g.gameTitle, g.idGenre, g.priceBuy, g.priceRent, g.publisher, g.studio "
+                + " g.idGame, g.gameTitle, g.idGenre, g.priceBuy, g.priceRent, g.publisher, g.studio, "
                 + " ge.idGenre, ge.genreName"
                 + " FROM game g "
                 + " LEFT JOIN genre ge ON g.idGenre = ge.idGenre"
@@ -111,7 +111,7 @@ public class Game {
     public ArrayList<Game> getAll() {
         ArrayList<Game> ListGame = new ArrayList<Game>();
         ResultSet rs = DBHelper.selectQuery("SELECT "
-                + " g.idGame, g.gameTitle, g.idGenre, g.priceBuy, g.priceRent, g.publisher, g.studio "
+                + " g.idGame, g.gameTitle, g.idGenre, g.priceBuy, g.priceRent, g.publisher, g.studio, "
                 + " ge.idGenre, ge.genreName"
                 + " FROM game g "
                 + " LEFT JOIN genre ge ON g.idGenre = ge.idGenre"

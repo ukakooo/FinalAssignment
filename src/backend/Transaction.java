@@ -5,8 +5,8 @@ import java.sql.*;
 
 public class Transaction {
     private int idTransaction;
-    private Customer customer;
-    private Game game;
+    private Customer customer = new Customer();
+    private Game game = new Game();
     private String transactionDate;
     private int totalPrice;
 
@@ -81,6 +81,9 @@ public class Transaction {
                 transaction.getGame().setIdGame(rs.getInt("idGame"));
                 transaction.setTransactionDate(rs.getString("transactionDate"));
                 transaction.setTotalPrice(rs.getInt("totalPrice"));
+
+                transaction.getCustomer().setCustomerName(rs.getString("customerName"));
+                transaction.getGame().setGameTitle(rs.getString("gameTitle"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,8 +91,8 @@ public class Transaction {
         return transaction;
     }
 
-    public ArrayList<Game> getAll() {
-        ArrayList<Game> ListGame = new ArrayList<Game>();
+    public ArrayList<Transaction> getAll() {
+        ArrayList<Transaction> ListTransaction = new ArrayList<>();
         ResultSet rs = DBHelper.selectQuery("SELECT "
                 + "t.idTransaction, "
                 + "c.idCustomer, c.customerName,"
@@ -101,19 +104,23 @@ public class Transaction {
         );
         try {
             while (rs.next()) {
-                Game game = new Game();
-                game.setIdGame(rs.getInt("idGame"));
-                game.setGameTitle(rs.getString("gameTitle"));
-                game.setPriceBuy(rs.getInt("priceBuy"));
-                game.setPriceRent(rs.getInt("priceRent"));
-                game.setPublisher(rs.getString("publisher"));
-                game.setStudio(rs.getString("studio"));
-                ListGame.add(game);
+                Transaction transaction = new Transaction();
+                transaction.setIdTransaction(rs.getInt("idTransaction"));
+                transaction.getCustomer().setIdCustomer(rs.getInt("idCustomer"));
+                transaction.getGame().setIdGame(rs.getInt("idGame"));
+                transaction.setTransactionDate(rs.getString("transactionDate"));
+                transaction.setTotalPrice(rs.getInt("totalPrice"));
+
+                // Also populate names for the list
+                transaction.getCustomer().setCustomerName(rs.getString("customerName"));
+                transaction.getGame().setGameTitle(rs.getString("gameTitle"));
+                
+                ListTransaction.add(transaction);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ListGame;
+        return ListTransaction;
     }
 
     public ArrayList<Transaction> search(String keyword) {
