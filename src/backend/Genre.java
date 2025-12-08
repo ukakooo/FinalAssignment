@@ -12,8 +12,7 @@ public class Genre {
 
     }
 
-    public Genre(int idGenre, String genreName, String genreDesc) {
-        this.idGenre = idGenre;
+    public Genre(String genreName, String genreDesc) {
         this.genreName = genreName;
         this.genreDesc = genreDesc;
     }
