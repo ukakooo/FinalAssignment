@@ -57,7 +57,9 @@ public class UIGenre {
                     int genreId = Main.sigmaSkibidi.nextInt();
                     Main.sigmaSkibidi.nextLine();
 
-                    if (genreId < 1 || genreId > listGenre.size()) {
+                    Genre checkGenre = new Genre().getByID(genreId);
+
+                    if (checkGenre == null) {
                         System.out.println("Put a proper ID, buddy.");
                         break;
                     }
@@ -98,7 +100,9 @@ public class UIGenre {
                     System.out.print("Enter the Genre ID: ");
                     int genreIdDel = Main.sigmaSkibidi.nextInt();
 
-                    if (genreIdDel < 1 || genreIdDel > listGenre.size()) {
+                    Genre targetGenre = new Genre().getByID(genreIdDel);
+
+                    if (targetGenre == null) {
                         System.out.println("Put a proper ID, buddy.");
                         break;
                     }

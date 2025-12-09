@@ -24,9 +24,9 @@ public class UICustomer {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Input Genre Name: ");
+                    System.out.print("Input Customer Name: ");
                     String customerName = Main.sigmaSkibidi.nextLine();
-                    System.out.println("Input Genre Description: ");
+                    System.out.print("Input Customer Telp: ");
                     String customerTelp = Main.sigmaSkibidi.nextLine();
                     customer = new Customer(customerName, customerTelp);
                     customer.save();
@@ -56,15 +56,17 @@ public class UICustomer {
                     System.out.print("Input ID Customer: ");
                     int idCustomer = Main.sigmaSkibidi.nextInt();
 
-                    if (idCustomer < 1 || idCustomer > listCustomer.size()) {
+                    Customer checkCustomer = new Customer().getByID(idCustomer);
+
+                    if (checkCustomer.getIdCustomer() == 0) {
                         System.out.println("Put a proper ID, buddy.");
                         break;
                     }
 
                     Main.sigmaSkibidi.nextLine();
-                    System.out.println("Input Customer Name (Press Enter to keep unchanged): ");
+                    System.out.print("Input Customer Name (Press Enter to keep unchanged): ");
                     String customerName2 = Main.sigmaSkibidi.nextLine();
-                    System.out.println("Input Customer Telp (Press Enter to keep unchanged): ");
+                    System.out.print("Input Customer Telp (Press Enter to keep unchanged): ");
                     String customerTelp2 = Main.sigmaSkibidi.nextLine();
                     customer = new Customer(customerName2, customerTelp2);
                     customer.setIdCustomer(idCustomer);
@@ -95,7 +97,9 @@ public class UICustomer {
                     System.out.print("Enter the Customer ID: ");
                     int customerIdDel = Main.sigmaSkibidi.nextInt();
 
-                    if (customerIdDel < 1 || customerIdDel > listCustomer.size()) {
+                    Customer targetCustomer = new Customer().getByID(customerIdDel);
+
+                    if (targetCustomer.getIdCustomer() == 0) {
                         System.out.println("Put a proper ID, buddy.");
                         break;
                     }
