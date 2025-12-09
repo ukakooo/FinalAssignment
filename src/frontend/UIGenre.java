@@ -12,6 +12,7 @@ public class UIGenre {
                 "1. Insert new Genre\n" +
                 "2. Update Genre\n" +
                 "3. Delete Genre\n" +
+                "4. Show Tables\n" +
                 "0. Back to Main Menu\n" +
                 "===================================================\n" +
                 "Choose Menu: ";
@@ -57,7 +58,7 @@ public class UIGenre {
                     Main.sigmaSkibidi.nextLine();
 
                     if (genreId < 1 || genreId > listGenre.size()) {
-                        System.out.println("Put a proper ID dawg.");
+                        System.out.println("Put a proper ID, buddy.");
                         break;
                     }
 
@@ -101,6 +102,15 @@ public class UIGenre {
                     genre.setIdGenre(genreIdDel);
                     genre.delete();
                     System.out.println("Genre deleted successfully!");
+                    break;
+                case 4:
+                    System.out.println("==================================================================");
+                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+                    System.out.println("==================================================================");
+                    for (Genre g : listGenre) {
+                        System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
+                    }
+                    System.out.println("==================================================================");
                     break;
                 case 0:
                     return;
