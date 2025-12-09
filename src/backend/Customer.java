@@ -13,8 +13,7 @@ public class Customer {
 
     }
 
-    public Customer(int idCustomer, String customerName, String customerTelp) {
-        this.idCustomer = idCustomer;
+    public Customer(String customerName, String customerTelp) {
         this.customerName = customerName;
         this.customerTelp = customerTelp;
     }

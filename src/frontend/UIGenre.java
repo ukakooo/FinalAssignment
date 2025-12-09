@@ -3,7 +3,7 @@ package frontend;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-import backend.Genre;
+import backend.*;
 
 public class UIGenre {
     
@@ -97,6 +97,12 @@ public class UIGenre {
                     System.out.println("==================================================================");
                     System.out.print("Enter the Genre ID: ");
                     int genreIdDel = Main.sigmaSkibidi.nextInt();
+
+                    if (genreIdDel < 1 || genreIdDel > listGenre.size()) {
+                        System.out.println("Put a proper ID, buddy.");
+                        break;
+                    }
+                    
                     Main.sigmaSkibidi.nextLine();
                     genre = new Genre();
                     genre.setIdGenre(genreIdDel);

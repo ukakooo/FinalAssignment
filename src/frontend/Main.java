@@ -40,7 +40,9 @@ public class Main {
                         UIGenre frontGenre = new UIGenre(); frontGenre.manageGenre();
                         break;
                     // case 2: manageGame(); break;
-                    // case 3: manageCustomer(); break;
+                    case 3: 
+                        UICustomer frontCustomer = new UICustomer(); frontCustomer.manageCustomer(); 
+                        break;
                     // case 4: manageRenting(); break;
                     // case 5: managePurchase(); break;
                     // case 6: countTotalPaymentForCustomer(); break;
