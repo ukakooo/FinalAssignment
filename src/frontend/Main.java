@@ -39,7 +39,9 @@ public class Main {
                     case 1:
                         UIGenre frontGenre = new UIGenre(); frontGenre.manageGenre();
                         break;
-                    // case 2: manageGame(); break;
+                    case 2:
+                        UIGame frontGame = new UIGame(); frontGame.manageGame();
+                        break;
                     case 3: 
                         UICustomer frontCustomer = new UICustomer(); frontCustomer.manageCustomer(); 
                         break;

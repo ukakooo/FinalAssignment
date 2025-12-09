@@ -16,8 +16,7 @@ public class Game {
 
     }
 
-    public Game(int idGame, String gameTitle, Genre genre, int priceBuy, int priceRent, String publisher, String studio) {
-        this.idGame = idGame;
+    public Game(String gameTitle, Genre genre, int priceBuy, int priceRent, String publisher, String studio) {
         this.gameTitle = gameTitle;
         this.genre = genre;
         this.priceBuy = priceBuy;
