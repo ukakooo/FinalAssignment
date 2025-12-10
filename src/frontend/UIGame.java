@@ -44,21 +44,21 @@ public class UIGame {
                     listGame = Game.getAll();
                     System.out.println("New Game added successfully!");
                     System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
                     System.out.println("==================================================================");
                     if (!listGame.isEmpty()) {
                         Game lastGame = listGame.get(listGame.size() - 1);
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", lastGame.getIdGame(), lastGame.getGameTitle(), lastGame.getGenre(), lastGame.getPriceBuy(), lastGame.getPriceRent(), lastGame.getPublisher(), lastGame.getStudio());
+                        System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", lastGame.getIdGame(), lastGame.getGameTitle(), lastGame.getGenre(), lastGame.getPriceBuy(), lastGame.getPriceRent(), lastGame.getPublisher(), lastGame.getStudio());
                     }
                     System.out.println("==================================================================");
                     break;
 
                 case 2:
                     System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
                     System.out.println("==================================================================");
                     for (Game g : listGame) {
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
+                        System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
                     }
                     System.out.println("==================================================================");
                     System.out.println("");
@@ -120,18 +120,18 @@ public class UIGame {
                     System.out.println("Game updated successfully!");
 
                     System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
                     System.out.println("==================================================================");
                     if (!listGame.isEmpty()) {
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", Game.getIdGame(), Game.getGameTitle(), Game.getGenre().getGenreName(), Game.getPriceBuy(), Game.getPriceRent(), Game.getPublisher(), Game.getStudio());
+                        System.out.printf("%-5s %-30s %-15s %-12s %-12s %-25s %-20s\n", Game.getIdGame(), Game.getGameTitle(), Game.getGenre().getGenreName(), Game.getPriceBuy(), Game.getPriceRent(), Game.getPublisher(), Game.getStudio());
                     }
                     break;
                 case 3:
                     System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre ID", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", "ID", "Name", "Genre ID", "Buy Price", "Rent Price", "Publisher", "Studio");
                     System.out.println("==================================================================");
                     for (Game g : listGame) {
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
+                        System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
                     }
                     System.out.println("==================================================================");
                     System.out.print("Enter the Game ID: ");
@@ -159,10 +159,10 @@ public class UIGame {
     public void showTables() {
         ArrayList<Game> listGame = new Game().getAll();
         System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
                     System.out.println("==================================================================");
                     for (Game g : listGame) {
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
+                        System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
                     }
                     System.out.println("==================================================================");
     }

@@ -46,7 +46,7 @@ public class Main {
                         UICustomer frontCustomer = new UICustomer(); frontCustomer.manageCustomer(); 
                         break;
                     // case 4: manageRenting(); break;
-                    // case 5: managePurchase(); break;
+                    case 5: UIPurchase frontPurchase = new UIPurchase(); frontPurchase.managePurchase(); break;
                     case 0:
                         System.out.println("Goodbye!");
                         System.exit(0);

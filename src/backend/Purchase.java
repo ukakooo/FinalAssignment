@@ -15,8 +15,7 @@ public class Purchase {
 
     }
 
-    public Purchase(int idPurchase, Customer customer, Game game, int qty, String purchaseDate, int totalPrice) {
-        this.idPurchase = idPurchase;
+    public Purchase(Customer customer, Game game, int qty, String purchaseDate, int totalPrice) {
         this.customer = customer;
         this.game = game;
         this.qty = qty;
@@ -24,7 +23,7 @@ public class Purchase {
         this.totalPrice = totalPrice;
     }
 
-    public int getidPurchase() {
+    public int getIdPurchase() {
         return idPurchase;
     }
 
@@ -177,7 +176,7 @@ public class Purchase {
     }
 
     public void save() {
-        if (getByID(idPurchase).getidPurchase() == 0) {
+        if (getByID(idPurchase).getIdPurchase() == 0) {
             // Added qty to INSERT statement
             String query = "INSERT INTO purchase (idCustomer, idGame, qty, purchaseDate, totalPrice) VALUES ("
                     + this.customer.getIdCustomer() + ", "

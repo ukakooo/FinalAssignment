@@ -36,10 +36,10 @@ public class UICustomer {
                     System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
                     System.out.println("==================================================================");
                     if (!listCustomer.isEmpty()) {
-                        for (Customer c : listCustomer) {
-                            System.out.printf("%-5s %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
-                                    c.getCustomerTelp());
-                        }
+                        Customer lastCustomer = listCustomer.get(listCustomer.size() - 1);
+                        System.out.printf("%-5s %-25s %-20s\n", lastCustomer.getIdCustomer(),
+                                lastCustomer.getCustomerName(),
+                                lastCustomer.getCustomerTelp());
                     }
                     System.out.println("==================================================================");
                     break;
@@ -56,6 +56,7 @@ public class UICustomer {
                     System.out.println("");
                     System.out.print("Input ID Customer: ");
                     int idCustomer = Main.sigmaSkibidi.nextInt();
+                    Customer oldCustData = new Customer().getByID(idCustomer);
 
                     Customer checkCustomer = new Customer().getByID(idCustomer);
 
@@ -67,8 +68,18 @@ public class UICustomer {
                     Main.sigmaSkibidi.nextLine();
                     System.out.print("Input Customer Name (Press Enter to keep unchanged): ");
                     String customerName2 = Main.sigmaSkibidi.nextLine();
+
+                    if (customerName2.isEmpty()) {
+                        customerName2 = oldCustData.getCustomerName();
+                    }
+
                     System.out.print("Input Customer Telp (Press Enter to keep unchanged): ");
                     String customerTelp2 = Main.sigmaSkibidi.nextLine();
+
+                    if (customerTelp2.isEmpty()) {
+                        customerTelp2 = oldCustData.getCustomerTelp();
+                    }
+
                     customer = new Customer(customerName2, customerTelp2);
                     customer.setIdCustomer(idCustomer);
                     customer.save();

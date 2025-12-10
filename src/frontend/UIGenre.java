@@ -56,6 +56,7 @@ public class UIGenre {
                     System.out.print("Enter the Genre ID: ");
                     int genreId = Main.sigmaSkibidi.nextInt();
                     Main.sigmaSkibidi.nextLine();
+                    Genre oldGenreData = new Genre().getByID(genreId);
 
                     Genre checkGenre = new Genre().getByID(genreId);
 
@@ -67,12 +68,12 @@ public class UIGenre {
                     System.out.print("Input Genre Name (Press Enter to keep unchanged): ");
                     String genreNameUpd = Main.sigmaSkibidi.nextLine();
                     if (genreNameUpd.isEmpty()) {
-                        genreNameUpd = listGenre.get(genreId - 1).getGenreName();
+                        genreNameUpd = oldGenreData.getGenreName();
                     }
                     System.out.print("Input Genre Description (Press Enter to keep unchanged): ");
                     String genreDescUpd = Main.sigmaSkibidi.nextLine();
                     if (genreDescUpd.isEmpty()) {
-                        genreDescUpd = listGenre.get(genreId - 1).getGenreDesc();
+                        genreDescUpd = oldGenreData.getGenreDesc();
                     }
                     genre = new Genre(genreNameUpd, genreDescUpd);
                     genre.setIdGenre(genreId);
