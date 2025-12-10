@@ -47,8 +47,6 @@ public class Main {
                         break;
                     // case 4: manageRenting(); break;
                     // case 5: managePurchase(); break;
-                    // case 6: countTotalPaymentForCustomer(); break;
-                    // case 7: countTotalPaymentForGame(); break;
                     case 0:
                         System.out.println("Goodbye!");
                         System.exit(0);

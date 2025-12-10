@@ -15,7 +15,6 @@ public class Purchase {
 
     }
 
-    // Updated constructor to include qty
     public Purchase(int idPurchase, Customer customer, Game game, int qty, String purchaseDate, int totalPrice) {
         this.idPurchase = idPurchase;
         this.customer = customer;

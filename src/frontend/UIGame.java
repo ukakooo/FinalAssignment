@@ -3,19 +3,18 @@ package frontend;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-import backend.Customer;
-import backend.Game;
-import backend.Genre;
+import backend.*;
 
 public class UIGame {
     public void manageGame() {
-        String mainMenuText = "================= Manage Game ====================\n" +
+        String mainMenuText = 
+                "================= Manage Game ====================\n" +
                 "1. Insert new Game\n" +
                 "2. Update Game\n" +
                 "3. Delete Game\n" +
                 "4. Show Tables\n" +
                 "0. Back to Main Menu\n" +
-                "===================================================\n" +
+                "==================================================\n" +
                 "Choose Menu: ";
         try {
             System.out.print(mainMenuText);
@@ -53,7 +52,7 @@ public class UIGame {
                     }
                     System.out.println("==================================================================");
                     break;
- 
+
                 case 2:
                     System.out.println("==================================================================");
                     System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
@@ -144,13 +143,8 @@ public class UIGame {
                     System.out.println("Game deleted successfully!");
                     break;
                 case 4:
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
-                    System.out.println("==================================================================");
-                    for (Game g : listGame) {
-                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
-                    }
-                    System.out.println("==================================================================");
+                    showTables();
+                    break;
                 case 0:
                     return;
             }
@@ -160,5 +154,16 @@ public class UIGame {
             System.out.println();
             this.manageGame();
         }
+    }
+
+    public void showTables() {
+        ArrayList<Game> listGame = new Game().getAll();
+        System.out.println("==================================================================");
+                    System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", "ID", "Name", "Genre", "Buy Price", "Rent Price", "Publisher", "Studio");
+                    System.out.println("==================================================================");
+                    for (Game g : listGame) {
+                        System.out.printf("%-5s %-25s %-15s %-12s %-12s %-20s %-20s\n", g.getIdGame(), g.getGameTitle(), g.getGenre().getGenreName(), g.getPriceBuy(), g.getPriceRent(), g.getPublisher(), g.getStudio());
+                    }
+                    System.out.println("==================================================================");
     }
 }

@@ -49,7 +49,8 @@ public class UICustomer {
                     System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
                     System.out.println("==================================================================");
                     for (Customer c : listCustomer) {
-                        System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(), c.getCustomerTelp());
+                        System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
+                                c.getCustomerTelp());
                     }
                     System.out.println("==================================================================");
                     System.out.println("");
@@ -84,7 +85,7 @@ public class UICustomer {
                     }
                     System.out.println("==================================================================");
                     break;
-                
+
                 case 3:
                     System.out.println("==================================================================");
                     System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
@@ -103,7 +104,7 @@ public class UICustomer {
                         System.out.println("Put a proper ID, buddy.");
                         break;
                     }
-                    
+
                     Main.sigmaSkibidi.nextLine();
                     customer = new Customer();
                     customer.setIdCustomer(customerIdDel);
@@ -112,18 +113,24 @@ public class UICustomer {
                     break;
 
                 case 4:
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telep");
-                    System.out.println("==================================================================");
-                    for (Customer c : listCustomer) {
-                        System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(), c.getCustomerTelp());
-                    }
-                    System.out.println("==================================================================");
+                    showTables();
+                    break;
                 case 0:
                     break;
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
         }
+    }
+
+    public void showTables() {
+        ArrayList<Customer> listCustomer = new Customer().getAll();
+        System.out.println("========================= Customer's Data =========================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telep");
+        System.out.println("===================================================================");
+        for (Customer c : listCustomer) {
+            System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(), c.getCustomerTelp());
+        }
+        System.out.println("===================================================================");
     }
 }
