@@ -25,8 +25,6 @@ public class Main {
                     "3. Manage Customer\n" +
                     "4. Manage Renting\n" +
                     "5. Manage Purchase\n" +
-                    "6. Count Total Payment for each Customer\n" +
-                    "7. Count Total Payment for each Game\n" +
                     "0. Exit\n" +
                     "==================================================\n" +
                     "Choose Menu: ";
