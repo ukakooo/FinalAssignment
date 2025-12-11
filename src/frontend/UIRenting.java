@@ -6,9 +6,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import backend.*;
 
-public class UIRenting implements ITransaction {
+public class UIRenting extends UserInterface implements ITransaction {
 
-    public void insertTransaction() {
+    @Override
+    public void insert() {
         try {
             boolean repeat = true;
             UICustomer frontCustomer = new UICustomer(); frontCustomer.showTables();
@@ -92,11 +93,12 @@ public class UIRenting implements ITransaction {
             
     }
 
-    public void updateTransaction() {
+    @Override
+    public void update() {
         System.out.println("-----------------------------------------");
         System.out.println("Update Renting Transaction");
         System.out.println("-----------------------------------------");
-        showTable();
+        showTables();
 
         try {
             System.out.print("Enter ID Renting to Update: ");
@@ -175,11 +177,12 @@ public class UIRenting implements ITransaction {
         }
     }
 
-    public void deleteTransaction() {
+    @Override
+    public void delete() {
         System.out.println("-----------------------------------------");
         System.out.println("Delete Renting Transaction");
         System.out.println("-----------------------------------------");
-        showTable();
+        showTables();
 
         System.out.print("Enter ID Renting to Delete: ");
         int id = Main.sigmaSkibidi.nextInt();
@@ -191,7 +194,8 @@ public class UIRenting implements ITransaction {
         System.out.println("Deleted successfully.");
     }
 
-    private void showTable() {
+    @Override
+    private void showTables() {
         ArrayList<Renting> list = new Renting().getAll();
         System.out.println(
                 "=============================================================================================================");
@@ -216,7 +220,7 @@ public class UIRenting implements ITransaction {
 
     @Override
     public void calculateTotalPricePerCustomer() {
-        showTable();
+        showTables();
         System.out.println("-----------------------------------------");
         UICustomer frontCustomer = new UICustomer();
         frontCustomer.showTables();
@@ -285,16 +289,16 @@ public class UIRenting implements ITransaction {
 
                 switch (choice) {
                     case 1:
-                        insertTransaction();
+                        insert();
                         break;
                     case 2:
-                        updateTransaction();
+                        update();
                         break;
                     case 3:
-                        deleteTransaction();
+                        delete();
                         break;
                     case 4:
-                        showTable();
+                        showTables();
                         break;
                     case 5:
                         calculateTotalPricePerCustomer();

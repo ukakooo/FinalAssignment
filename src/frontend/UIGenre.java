@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 import backend.*;
 
-public class UIGenre {
+public class UIGenre extends UserInterface {
 
     public void manageGenre() {
         String mainMenuText = "================= Manage Genre ====================\n" +
@@ -23,14 +23,14 @@ public class UIGenre {
 
             switch (choice) {
                 case 1:
-                    addGenre();
+                    insert();
                     break;
 
                 case 2:
-                    updateGenre();
+                    update();
                     break;
                 case 3:
-                    deleteGenre();
+                    delete();
                     break;
                 case 4:
                     showTables();
@@ -46,7 +46,8 @@ public class UIGenre {
         }
     }
 
-    public void addGenre() {
+    @Override
+    public void insert() {
         ArrayList<Genre> listGenre = new Genre().getAll();
         Genre genre;
         System.out.print("Input Genre Name: ");
@@ -68,7 +69,8 @@ public class UIGenre {
         System.out.println("==================================================================");
     }
 
-    public void updateGenre() {
+    @Override
+    public void update() {
         ArrayList<Genre> listGenre = new Genre().getAll();
         Genre genre;
         System.out.println("==================================================================");
@@ -115,7 +117,8 @@ public class UIGenre {
         System.out.println("==================================================================");
     }
 
-    public void deleteGenre() {
+    @Override
+    public void delete() {
         ArrayList<Genre> listGenre = new Genre().getAll();
         Genre genre;
         System.out.println("==================================================================");
@@ -142,6 +145,7 @@ public class UIGenre {
         System.out.println("Genre deleted successfully!");
     }
 
+    @Override
     public void showTables() {
         ArrayList<Genre> listGenre = new Genre().getAll();
         System.out.println("==================================================================");
