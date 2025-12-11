@@ -27,6 +27,15 @@ public class Renting {
         this.returnDate = returnDate;
     }
 
+    public Renting(Customer customer, Game game, String transactionDate, int totalPrice, String rentDate, String returnDate) {
+        this.customer = customer;
+        this.game = game;
+        this.transactionDate = transactionDate;
+        this.totalPrice = totalPrice; 
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
+
     public int getIdRenting() {
         return idRenting;
     }
@@ -83,6 +92,13 @@ public class Renting {
         this.returnDate = returnDate;
     }
 
+    private String cutDate(String date) {
+        if (date != null && date.length() > 10) {
+            return date.substring(0, 10);
+        }
+        return date;
+    }
+
     public Renting getByID(int id) {
         Renting renting = new Renting();
         ResultSet rs = DBHelper.selectQuery("SELECT "
@@ -103,10 +119,10 @@ public class Renting {
                 renting.getCustomer().setCustomerName(rs.getString("customerName"));
                 renting.getGame().setIdGame(rs.getInt("idGame"));
                 renting.getGame().setGameTitle(rs.getString("gameTitle"));
-                renting.setTransactionDate(rs.getString("transactionDate"));
+                renting.setTransactionDate(cutDate(rs.getString("transactionDate")));
                 renting.setTotalPrice(rs.getInt("totalPrice"));
-                renting.setRentDate(rs.getString("rentDate"));
-                renting.setReturnDate(rs.getString("returnDate"));
+                renting.setRentDate(cutDate(rs.getString("rentDate")));
+                renting.setReturnDate(cutDate(rs.getString("returnDate")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,10 +150,10 @@ public class Renting {
                 renting.getCustomer().setCustomerName(rs.getString("customerName"));
                 renting.getGame().setIdGame(rs.getInt("idGame"));
                 renting.getGame().setGameTitle(rs.getString("gameTitle"));
-                renting.setTransactionDate(rs.getString("transactionDate"));
+                renting.setTransactionDate(cutDate(rs.getString("transactionDate")));
                 renting.setTotalPrice(rs.getInt("totalPrice"));
-                renting.setRentDate(rs.getString("rentDate"));
-                renting.setReturnDate(rs.getString("returnDate"));
+                renting.setRentDate(cutDate(rs.getString("rentDate")));
+                renting.setReturnDate(cutDate(rs.getString("returnDate")));
                 
                 ListRenting.add(renting);
             }
@@ -170,10 +186,10 @@ public class Renting {
                 renting.getCustomer().setCustomerName(rs.getString("customerName"));
                 renting.getGame().setIdGame(rs.getInt("idGame"));
                 renting.getGame().setGameTitle(rs.getString("gameTitle"));
-                renting.setTransactionDate(rs.getString("transactionDate"));
+                renting.setTransactionDate(cutDate(rs.getString("transactionDate")));
                 renting.setTotalPrice(rs.getInt("totalPrice"));
-                renting.setRentDate(rs.getString("rentDate"));
-                renting.setReturnDate(rs.getString("returnDate"));
+                renting.setRentDate(cutDate(rs.getString("rentDate")));
+                renting.setReturnDate(cutDate(rs.getString("returnDate")));
                 
                 ListRenting.add(renting);
             }
