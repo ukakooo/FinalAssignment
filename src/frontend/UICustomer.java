@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 import backend.*;
 
-public class UICustomer {
+public class UICustomer extends UserInterface{
     public void manageCustomer() {
         String mainMenuText = "================= Manage Customer ====================\n" +
                 "1. Insert new Customer\n" +
@@ -22,15 +22,15 @@ public class UICustomer {
 
             switch (choice) {
                 case 1:
-                    addCustomer();
+                    insert();
                     break;
 
                 case 2:
-                    updateCustomer();
+                    update();
                     break;
 
                 case 3:
-                    deleteCustomer();
+                    delete();
                     break;
 
                 case 4:
@@ -44,7 +44,7 @@ public class UICustomer {
         }
     }
 
-    public void addCustomer() {
+    public void insert() {
         ArrayList<Customer> listCustomer = new Customer().getAll();
         Customer customer;
         System.out.print("Input Customer Name: ");
@@ -67,7 +67,7 @@ public class UICustomer {
         System.out.println("==================================================================");
     }
 
-    public void updateCustomer() {
+    public void update() {
         ArrayList<Customer> listCustomer = new Customer().getAll();
         Customer customer;
         System.out.println("==================================================================");
@@ -120,7 +120,7 @@ public class UICustomer {
         System.out.println("==================================================================");
     }
 
-    public void deleteCustomer() {
+    public void delete() {
         ArrayList<Customer> listCustomer = new Customer().getAll();
         Customer customer;
         System.out.println("==================================================================");

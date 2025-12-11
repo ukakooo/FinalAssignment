@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import backend.*;
 
-public class UIRenting extends Transaction {
+public class UIRenting implements ITransaction {
 
     public void insertTransaction() {
         try {

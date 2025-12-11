@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 import backend.*;
 
-public class UIGame {
+public class UIGame extends UserInterface {
     public void manageGame() {
         String mainMenuText = "================= Manage Game ====================\n" +
                 "1. Insert new Game\n" +
@@ -22,14 +22,14 @@ public class UIGame {
 
             switch (choice) {
                 case 1:
-                    addGame();
+                    insert();
                     break;
 
                 case 2:
-                    updateGame();
+                    update();
                     break;
                 case 3:
-                    deleteGame();
+                    delete();
                     break;
                 case 4:
                     showTables();
@@ -45,7 +45,8 @@ public class UIGame {
         }
     }
 
-    public void addGame() {
+    @Override
+    public void insert() {
         ArrayList<Game> listGame = new ArrayList<Game>();
         Game Game;
         System.out.print("Input Game Title: ");
@@ -79,7 +80,8 @@ public class UIGame {
         System.out.println("==================================================================");
     }
 
-    public void updateGame() {
+    @Override
+    public void update() {
         ArrayList<Game> listGame = new Game().getAll();
         Game game;
         System.out.println("==================================================================");
@@ -160,7 +162,8 @@ public class UIGame {
         }
     }
 
-    public void deleteGame() {
+    @Override
+    public void delete() {
         ArrayList<Game> listGame = new Game().getAll();
         Game game;
         System.out.println("==================================================================");

@@ -1,7 +1,7 @@
 package frontend;
 
-public abstract class Transaction {
+public interface ITransaction {
     // Total Calculations
-    public abstract void calculateTotalPricePerCustomer();
+    public void calculateTotalPricePerCustomer();
     // public abstract void calculateTotalPricePerGame();
 }

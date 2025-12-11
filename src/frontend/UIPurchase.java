@@ -3,7 +3,7 @@ package frontend;
 import java.util.ArrayList;
 import backend.*;
 
-public class UIPurchase extends Transaction {
+public class UIPurchase extends UserInterface implements ITransaction {
     public void managePurchase() {
         String mainMenuText = "================= PURCHASE MENU =====================\n" +
                 "1. Add Purchase\n" +
@@ -22,14 +22,14 @@ public class UIPurchase extends Transaction {
 
             switch (choice) {
                 case 1:
-                    addPurchase();
+                    insert();
                     break;
 
                 case 2:
-                    updatePurchase();
+                    update();
                     break;
                 case 3:
-                    deletePurchase();
+                    delete();
                     break;
 
                 case 4:
@@ -51,7 +51,8 @@ public class UIPurchase extends Transaction {
         }
     }
 
-    public void addPurchase() {
+    @Override
+    public void insert() {
         ArrayList<Purchase> listPurchase = new ArrayList<Purchase>();
         boolean repeat = true;
         UICustomer frontCustomer = new UICustomer();
@@ -121,7 +122,8 @@ public class UIPurchase extends Transaction {
         } while (repeat);
     }
 
-    public void updatePurchase() {
+    @Override
+    public void update() {
         ArrayList<Purchase> listPurchase = new ArrayList<Purchase>();
         System.out.println();
         showTables();
@@ -224,7 +226,8 @@ public class UIPurchase extends Transaction {
         }
     }
 
-    public void deletePurchase() {
+    @Override
+    public void delete() {
         ArrayList<Purchase> listPurchase = new Purchase().getAll();
         Purchase purchase;
         System.out.println("==================================================================");
@@ -247,6 +250,7 @@ public class UIPurchase extends Transaction {
         System.out.println("Purchase deleted successfully.");
     }
 
+    @Override
     public void showTables() {
         ArrayList<Purchase> listPurchase = new Purchase().getAll();
         System.out.println("==================================================================");
