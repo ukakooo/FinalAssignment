@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import backend.*;
 
 public class UIGenre {
-    
+
     public void manageGenre() {
         String mainMenuText = "================= Manage Genre ====================\n" +
                 "1. Insert new Genre\n" +
@@ -25,103 +25,17 @@ public class UIGenre {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Input Genre Name: ");
-                    String genreName = Main.sigmaSkibidi.nextLine();
-                    System.out.print("Input Genre Description: ");
-                    String genreDesc = Main.sigmaSkibidi.nextLine();
-                    genre = new Genre(genreName, genreDesc);
-                    genre.save();
-                    listGenre = genre.getAll();
-                    System.out.println("New Genre added successfully!");
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
-                    System.out.println("==================================================================");
-                    if (!listGenre.isEmpty()) {
-                        Genre lastGenre = listGenre.get(listGenre.size() - 1);
-                        System.out.printf("%-5d %-25s %-20s\n", lastGenre.getIdGenre(), lastGenre.getGenreName(),
-                                lastGenre.getGenreDesc());
-                    }
-                    System.out.println("==================================================================");
+                    addGenre();
                     break;
 
                 case 2:
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
-                    System.out.println("==================================================================");
-                    for (Genre g : listGenre) {
-                        System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
-                    }
-                    System.out.println("==================================================================");
-                    System.out.println("");
-                    System.out.print("Enter the Genre ID: ");
-                    int genreId = Main.sigmaSkibidi.nextInt();
-                    Main.sigmaSkibidi.nextLine();
-                    Genre oldGenreData = new Genre().getByID(genreId);
-
-                    Genre checkGenre = new Genre().getByID(genreId);
-
-                    if (checkGenre == null) {
-                        System.out.println("Put a proper ID, buddy.");
-                        break;
-                    }
-
-                    System.out.print("Input Genre Name (Press Enter to keep unchanged): ");
-                    String genreNameUpd = Main.sigmaSkibidi.nextLine();
-                    if (genreNameUpd.isEmpty()) {
-                        genreNameUpd = oldGenreData.getGenreName();
-                    }
-                    System.out.print("Input Genre Description (Press Enter to keep unchanged): ");
-                    String genreDescUpd = Main.sigmaSkibidi.nextLine();
-                    if (genreDescUpd.isEmpty()) {
-                        genreDescUpd = oldGenreData.getGenreDesc();
-                    }
-                    genre = new Genre(genreNameUpd, genreDescUpd);
-                    genre.setIdGenre(genreId);
-                    genre.save();
-                    listGenre = genre.getAll();
-                    System.out.println("Genre updated successfully!");
-
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
-                    System.out.println("==================================================================");
-                    if (!listGenre.isEmpty()) {
-                        Genre getUpdGenre = listGenre.get(genreId - 1);
-                        System.out.printf("%-5d %-25s %-20s\n", getUpdGenre.getIdGenre(), getUpdGenre.getGenreName(),
-                                getUpdGenre.getGenreDesc());
-                    }
+                    updateGenre();
                     break;
                 case 3:
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
-                    System.out.println("==================================================================");
-                    for (Genre g : listGenre) {
-                        System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
-                    }
-                    System.out.println("==================================================================");
-                    System.out.print("Enter the Genre ID: ");
-                    int genreIdDel = Main.sigmaSkibidi.nextInt();
-
-                    Genre targetGenre = new Genre().getByID(genreIdDel);
-
-                    if (targetGenre == null) {
-                        System.out.println("Put a proper ID, buddy.");
-                        break;
-                    }
-                    
-                    Main.sigmaSkibidi.nextLine();
-                    genre = new Genre();
-                    genre.setIdGenre(genreIdDel);
-                    genre.delete();
-                    System.out.println("Genre deleted successfully!");
+                    deleteGenre();
                     break;
                 case 4:
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
-                    System.out.println("==================================================================");
-                    for (Genre g : listGenre) {
-                        System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
-                    }
-                    System.out.println("==================================================================");
+                    showTables();
                     break;
                 case 0:
                     return;
@@ -132,5 +46,114 @@ public class UIGenre {
             System.out.println();
             this.manageGenre();
         }
+    }
+
+    public void addGenre() {
+        ArrayList<Genre> listGenre = new Genre().getAll();
+        Genre genre;
+        System.out.print("Input Genre Name: ");
+        String genreName = Main.sigmaSkibidi.nextLine();
+        System.out.print("Input Genre Description: ");
+        String genreDesc = Main.sigmaSkibidi.nextLine();
+        genre = new Genre(genreName, genreDesc);
+        genre.save();
+        listGenre = genre.getAll();
+        System.out.println("New Genre added successfully!");
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+        System.out.println("==================================================================");
+        if (!listGenre.isEmpty()) {
+            Genre lastGenre = listGenre.get(listGenre.size() - 1);
+            System.out.printf("%-5d %-25s %-20s\n", lastGenre.getIdGenre(), lastGenre.getGenreName(),
+                    lastGenre.getGenreDesc());
+        }
+        System.out.println("==================================================================");
+    }
+
+    public void updateGenre() {
+        ArrayList<Genre> listGenre = new Genre().getAll();
+        Genre genre;
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+        System.out.println("==================================================================");
+        for (Genre g : listGenre) {
+            System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
+        }
+        System.out.println("==================================================================");
+        System.out.println("");
+        System.out.print("Enter the Genre ID: ");
+        int genreId = Main.sigmaSkibidi.nextInt();
+        Main.sigmaSkibidi.nextLine();
+        Genre oldGenreData = new Genre().getByID(genreId);
+
+        Genre checkGenre = new Genre().getByID(genreId);
+
+        if (checkGenre == null) {
+            System.out.println("Put a proper ID, buddy.");
+            return;
+        }
+
+        System.out.print("Input Genre Name (Press Enter to keep unchanged): ");
+        String genreNameUpd = Main.sigmaSkibidi.nextLine();
+        if (genreNameUpd.isEmpty()) {
+            genreNameUpd = oldGenreData.getGenreName();
+        }
+        System.out.print("Input Genre Description (Press Enter to keep unchanged): ");
+        String genreDescUpd = Main.sigmaSkibidi.nextLine();
+        if (genreDescUpd.isEmpty()) {
+            genreDescUpd = oldGenreData.getGenreDesc();
+        }
+        genre = new Genre(genreNameUpd, genreDescUpd);
+        genre.setIdGenre(genreId);
+        genre.save();
+        listGenre = genre.getAll();
+        System.out.println("Genre updated successfully!");
+
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+        System.out.println("==================================================================");
+        if (!listGenre.isEmpty()) {
+            Genre getUpdGenre = listGenre.get(genreId - 1);
+            System.out.printf("%-5d %-25s %-20s\n", getUpdGenre.getIdGenre(), getUpdGenre.getGenreName(),
+                    getUpdGenre.getGenreDesc());
+        }
+    }
+
+    public void deleteGenre() {
+        ArrayList<Genre> listGenre = new Genre().getAll();
+        Genre genre;
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+        System.out.println("==================================================================");
+        for (Genre g : listGenre) {
+            System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
+        }
+        System.out.println("==================================================================");
+        System.out.print("Enter the Genre ID: ");
+        int genreIdDel = Main.sigmaSkibidi.nextInt();
+
+        Genre targetGenre = new Genre().getByID(genreIdDel);
+
+        if (targetGenre == null) {
+            System.out.println("Put a proper ID, buddy.");
+            return;
+        }
+
+        Main.sigmaSkibidi.nextLine();
+        genre = new Genre();
+        genre.setIdGenre(genreIdDel);
+        genre.delete();
+        System.out.println("Genre deleted successfully!");
+    }
+
+    public void showTables() {
+        ArrayList<Genre> listGenre = new Genre().getAll();
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
+        System.out.println("==================================================================");
+        for (Genre g : listGenre) {
+            System.out.printf("%-5d %-25s %-20s\n", g.getIdGenre(), g.getGenreName(), g.getGenreDesc());
+        }
+        System.out.println("==================================================================");
     }
 }

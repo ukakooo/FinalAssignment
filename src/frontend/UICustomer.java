@@ -19,33 +19,58 @@ public class UICustomer {
             System.out.print(mainMenuText);
             int choice = Main.sigmaSkibidi.nextInt();
             Main.sigmaSkibidi.nextLine();
-            Customer customer;
-            ArrayList<Customer> listCustomer = new Customer().getAll();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Input Customer Name: ");
-                    String customerName = Main.sigmaSkibidi.nextLine();
-                    System.out.print("Input Customer Telp: ");
-                    String customerTelp = Main.sigmaSkibidi.nextLine();
-                    customer = new Customer(customerName, customerTelp);
-                    customer.save();
-                    listCustomer = customer.getAll();
-                    System.out.println("New Customer added successfully!");
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
-                    System.out.println("==================================================================");
-                    if (!listCustomer.isEmpty()) {
-                        Customer lastCustomer = listCustomer.get(listCustomer.size() - 1);
-                        System.out.printf("%-5s %-25s %-20s\n", lastCustomer.getIdCustomer(),
-                                lastCustomer.getCustomerName(),
-                                lastCustomer.getCustomerTelp());
-                    }
-                    System.out.println("==================================================================");
+                    addCustomer();
                     break;
 
                 case 2:
-                    System.out.println("==================================================================");
+                    updateCustomer();
+                    break;
+
+                case 3:
+                    deleteCustomer();
+                    break;
+
+                case 4:
+                    showTables();
+                    break;
+                case 0:
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
+
+    public void addCustomer() {
+        ArrayList<Customer> listCustomer = new Customer().getAll();
+        Customer customer;
+        System.out.print("Input Customer Name: ");
+        String customerName = Main.sigmaSkibidi.nextLine();
+        System.out.print("Input Customer Telp: ");
+        String customerTelp = Main.sigmaSkibidi.nextLine();
+        customer = new Customer(customerName, customerTelp);
+        customer.save();
+        listCustomer = customer.getAll();
+        System.out.println("New Customer added successfully!");
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
+        System.out.println("==================================================================");
+        if (!listCustomer.isEmpty()) {
+            Customer lastCustomer = listCustomer.get(listCustomer.size() - 1);
+            System.out.printf("%-5s %-25s %-20s\n", lastCustomer.getIdCustomer(),
+                    lastCustomer.getCustomerName(),
+                    lastCustomer.getCustomerTelp());
+        }
+        System.out.println("==================================================================");
+    }
+
+    public void updateCustomer() {
+        ArrayList<Customer> listCustomer = new Customer().getAll();
+        Customer customer;
+        System.out.println("==================================================================");
                     System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
                     System.out.println("==================================================================");
                     for (Customer c : listCustomer) {
@@ -62,7 +87,7 @@ public class UICustomer {
 
                     if (checkCustomer.getIdCustomer() == 0) {
                         System.out.println("Put a proper ID, buddy.");
-                        break;
+                        return;
                     }
 
                     Main.sigmaSkibidi.nextLine();
@@ -95,10 +120,12 @@ public class UICustomer {
                         }
                     }
                     System.out.println("==================================================================");
-                    break;
+    }
 
-                case 3:
-                    System.out.println("==================================================================");
+    public void deleteCustomer() {
+        ArrayList<Customer> listCustomer = new Customer().getAll();
+        Customer customer;
+        System.out.println("==================================================================");
                     System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
                     System.out.println("==================================================================");
                     for (Customer c : listCustomer) {
@@ -113,7 +140,7 @@ public class UICustomer {
 
                     if (targetCustomer.getIdCustomer() == 0) {
                         System.out.println("Put a proper ID, buddy.");
-                        break;
+                        return;
                     }
 
                     Main.sigmaSkibidi.nextLine();
@@ -121,17 +148,6 @@ public class UICustomer {
                     customer.setIdCustomer(customerIdDel);
                     customer.delete();
                     System.out.println("Customer deleted successfully!");
-                    break;
-
-                case 4:
-                    showTables();
-                    break;
-                case 0:
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please try again.");
-        }
     }
 
     public void showTables() {
