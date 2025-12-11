@@ -90,7 +90,6 @@ public class UIRenting extends Transaction {
             } catch (Exception e) {
                 System.out.println("Error inserting data: " + e.getMessage());
                 e.printStackTrace();
-            
         } 
             
     }
@@ -215,31 +214,26 @@ public class UIRenting extends Transaction {
 
     @Override
     public void calculateTotalPricePerCustomer() {
+        showTable();
         System.out.println("-----------------------------------------");
-        System.out.println("Total Transaction Price Per Customer");
-        System.out.println("-----------------------------------------");
+        UICustomer frontCustomer = new UICustomer();
+        frontCustomer.showTables();
+        System.out.print("Input Customer ID: ");
+        int custId = Main.sigmaSkibidi.nextInt();
+        Customer selectedCustomer = new Customer().getByID(custId);
 
-        ArrayList<Renting> list = new Renting().getAll();
-
-        HashMap<String, Integer> customerTotals = new HashMap<>();
-
-        for (Renting r : list) {
-            String custName = r.getCustomer().getCustomerName();
-            int price = r.getTotalPrice();
-
-            if (customerTotals.containsKey(custName)) {
-                customerTotals.put(custName, customerTotals.get(custName) + price);
-            } else {
-                customerTotals.put(custName, price);
+        if (selectedCustomer.getIdCustomer() == 0) {
+            System.out.println("Put a proper ID, buddy.");
+            return;
+        }
+        ArrayList<Renting> listRenting = new Renting().getAll();
+        int totalPrice = 0;
+        for (Renting r : listRenting) {
+            if (r.getCustomer().getIdCustomer() == selectedCustomer.getIdCustomer()) {
+                totalPrice += r.getTotalPrice();
             }
         }
-
-        System.out.printf("%-25s %-15s\n", "Customer Name", "Total Spent");
-        System.out.println("-----------------------------------------");
-        for (Map.Entry<String, Integer> entry : customerTotals.entrySet()) {
-            System.out.printf("%-25s %-15d\n", entry.getKey(), entry.getValue());
-        }
-        System.out.println("-----------------------------------------");
+        System.out.println("Total Price for " + selectedCustomer.getCustomerName() + ": Rp." + totalPrice);
     }
 
     // @Override
@@ -278,6 +272,7 @@ public class UIRenting extends Transaction {
                     "2. Update Renting\n" +
                     "3. Delete Renting\n" +
                     "4. Show Tables\n" +
+                    "5. Count the total payment for each customer\n" +
                     "0. Back to Main Menu\n" +
                     "===================================================\n" +
                     "Choose Menu: ";
@@ -298,6 +293,9 @@ public class UIRenting extends Transaction {
                         break;
                     case 4:
                         showTable();
+                        break;
+                    case 5:
+                        calculateTotalPricePerCustomer();
                         break;
                     case 0:
                         return;

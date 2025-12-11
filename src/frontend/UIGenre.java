@@ -86,9 +86,7 @@ public class UIGenre {
         Main.sigmaSkibidi.nextLine();
         Genre oldGenreData = new Genre().getByID(genreId);
 
-        Genre checkGenre = new Genre().getByID(genreId);
-
-        if (checkGenre == null) {
+        if (oldGenreData.getIdGenre() == 0) {
             System.out.println("Put a proper ID, buddy.");
             return;
         }
