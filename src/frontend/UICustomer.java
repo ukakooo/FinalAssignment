@@ -71,83 +71,81 @@ public class UICustomer {
         ArrayList<Customer> listCustomer = new Customer().getAll();
         Customer customer;
         System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
-                    System.out.println("==================================================================");
-                    for (Customer c : listCustomer) {
-                        System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
-                                c.getCustomerTelp());
-                    }
-                    System.out.println("==================================================================");
-                    System.out.println("");
-                    System.out.print("Input ID Customer: ");
-                    int idCustomer = Main.sigmaSkibidi.nextInt();
-                    Customer oldCustData = new Customer().getByID(idCustomer);
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
+        System.out.println("==================================================================");
+        for (Customer c : listCustomer) {
+            System.out.printf("%-5d %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
+                    c.getCustomerTelp());
+        }
+        System.out.println("==================================================================");
+        System.out.println("");
+        System.out.print("Input ID Customer: ");
+        int idCustomer = Main.sigmaSkibidi.nextInt();
+        Customer oldCustData = new Customer().getByID(idCustomer);
 
-                    Customer checkCustomer = new Customer().getByID(idCustomer);
+        Customer checkCustomer = new Customer().getByID(idCustomer);
 
-                    if (checkCustomer.getIdCustomer() == 0) {
-                        System.out.println("Put a proper ID, buddy.");
-                        return;
-                    }
+        if (checkCustomer.getIdCustomer() == 0) {
+            System.out.println("Put a proper ID, buddy.");
+            return;
+        }
 
-                    Main.sigmaSkibidi.nextLine();
-                    System.out.print("Input Customer Name (Press Enter to keep unchanged): ");
-                    String customerName2 = Main.sigmaSkibidi.nextLine();
+        Main.sigmaSkibidi.nextLine();
+        System.out.print("Input Customer Name (Press Enter to keep unchanged): ");
+        String customerName2 = Main.sigmaSkibidi.nextLine();
 
-                    if (customerName2.isEmpty()) {
-                        customerName2 = oldCustData.getCustomerName();
-                    }
+        if (customerName2.isEmpty()) {
+            customerName2 = oldCustData.getCustomerName();
+        }
 
-                    System.out.print("Input Customer Telp (Press Enter to keep unchanged): ");
-                    String customerTelp2 = Main.sigmaSkibidi.nextLine();
+        System.out.print("Input Customer Telp (Press Enter to keep unchanged): ");
+        String customerTelp2 = Main.sigmaSkibidi.nextLine();
 
-                    if (customerTelp2.isEmpty()) {
-                        customerTelp2 = oldCustData.getCustomerTelp();
-                    }
+        if (customerTelp2.isEmpty()) {
+            customerTelp2 = oldCustData.getCustomerTelp();
+        }
 
-                    customer = new Customer(customerName2, customerTelp2);
-                    customer.setIdCustomer(idCustomer);
-                    customer.save();
-                    listCustomer = customer.getAll();
-                    System.out.println("Customer updated successfully!");
-                    System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
-                    System.out.println("==================================================================");
-                    if (!listCustomer.isEmpty()) {
-                        for (Customer c : listCustomer) {
-                            System.out.printf("%-5s %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
-                                    c.getCustomerTelp());
-                        }
-                    }
-                    System.out.println("==================================================================");
+        customer = new Customer(customerName2, customerTelp2);
+        customer.setIdCustomer(idCustomer);
+        customer.save();
+        listCustomer = customer.getAll();
+        System.out.println("Customer updated successfully!");
+        System.out.println("==================================================================");
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
+        System.out.println("==================================================================");
+        if (!listCustomer.isEmpty()) {
+            System.out.printf("%-5s %-25s %-20s\n", customer.getIdCustomer(), customer.getCustomerName(),
+                    customer.getCustomerTelp());
+        }
+        System.out.println("==================================================================");
     }
 
     public void deleteCustomer() {
         ArrayList<Customer> listCustomer = new Customer().getAll();
         Customer customer;
         System.out.println("==================================================================");
-                    System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
-                    System.out.println("==================================================================");
-                    for (Customer c : listCustomer) {
-                        System.out.printf("%-5s %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
-                                c.getCustomerTelp());
-                    }
-                    System.out.println("==================================================================");
-                    System.out.print("Enter the Customer ID: ");
-                    int customerIdDel = Main.sigmaSkibidi.nextInt();
+        System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Telp");
+        System.out.println("==================================================================");
+        for (Customer c : listCustomer) {
+            System.out.printf("%-5s %-25s %-20s\n", c.getIdCustomer(), c.getCustomerName(),
+                    c.getCustomerTelp());
+        }
+        System.out.println("==================================================================");
+        System.out.print("Enter the Customer ID: ");
+        int customerIdDel = Main.sigmaSkibidi.nextInt();
 
-                    Customer targetCustomer = new Customer().getByID(customerIdDel);
+        Customer targetCustomer = new Customer().getByID(customerIdDel);
 
-                    if (targetCustomer.getIdCustomer() == 0) {
-                        System.out.println("Put a proper ID, buddy.");
-                        return;
-                    }
+        if (targetCustomer.getIdCustomer() == 0) {
+            System.out.println("Put a proper ID, buddy.");
+            return;
+        }
 
-                    Main.sigmaSkibidi.nextLine();
-                    customer = new Customer();
-                    customer.setIdCustomer(customerIdDel);
-                    customer.delete();
-                    System.out.println("Customer deleted successfully!");
+        Main.sigmaSkibidi.nextLine();
+        customer = new Customer();
+        customer.setIdCustomer(customerIdDel);
+        customer.delete();
+        System.out.println("Customer deleted successfully!");
     }
 
     public void showTables() {

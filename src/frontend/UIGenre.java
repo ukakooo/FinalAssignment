@@ -20,8 +20,6 @@ public class UIGenre {
             System.out.print(mainMenuText);
             int choice = Main.sigmaSkibidi.nextInt();
             Main.sigmaSkibidi.nextLine();
-            Genre genre;
-            ArrayList<Genre> listGenre = new Genre().getAll();
 
             switch (choice) {
                 case 1:
@@ -111,10 +109,10 @@ public class UIGenre {
         System.out.printf("%-5s %-25s %-20s\n", "ID", "Name", "Description");
         System.out.println("==================================================================");
         if (!listGenre.isEmpty()) {
-            Genre getUpdGenre = listGenre.get(genreId - 1);
-            System.out.printf("%-5d %-25s %-20s\n", getUpdGenre.getIdGenre(), getUpdGenre.getGenreName(),
-                    getUpdGenre.getGenreDesc());
+            System.out.printf("%-5d %-25s %-20s\n", genre.getIdGenre(), genre.getGenreName(),
+                    genre.getGenreDesc());
         }
+        System.out.println("==================================================================");
     }
 
     public void deleteGenre() {

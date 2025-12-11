@@ -124,18 +124,7 @@ public class UIPurchase extends Transaction {
     public void updatePurchase() {
         ArrayList<Purchase> listPurchase = new ArrayList<Purchase>();
         System.out.println();
-        System.out.println("==================================================================");
-        System.out.printf("%-5s %-25s %-30s %-5s %-20s\n", "ID", "Customer Name", "Game Title", "Qty", "Total Price");
-        System.out.println("==================================================================");
-        if (!listPurchase.isEmpty()) {
-            for (Purchase p : listPurchase) {
-                System.out.printf("%-5s %-25s %-30s %-5s %-20s\n", p.getIdPurchase(),
-                        p.getCustomer().getCustomerName(),
-                        p.getGame().getGameTitle(), p.getQty(),
-                        "Rp." + p.getTotalPrice());
-            }
-            System.out.println("==================================================================");
-        }
+        showTables();
 
         System.out.print("Input Purchase ID: ");
         int purchaseID = Main.sigmaSkibidi.nextInt();
@@ -178,7 +167,8 @@ public class UIPurchase extends Transaction {
         Game selectedGameUpd;
 
         if (gameUpd.isEmpty()) {
-            selectedGameUpd = oldPurchaseData.getGame();
+            int idGameUpd = oldPurchaseData.getGame().getIdGame();
+            selectedGameUpd = oldPurchaseData.getGame().getByID(idGameUpd);
         } else {
             selectedGameUpd = new Game().getByID(Integer.parseInt(gameUpd));
             if (selectedGameUpd.getIdGame() == 0) {
@@ -187,35 +177,51 @@ public class UIPurchase extends Transaction {
             }
         }
 
-        System.out.print("Input Quantity: ");
-        int quantity = Main.sigmaSkibidi.nextInt();
+        
 
-        if (quantity <= 0) {
-            System.out.println("Quantity can't be negative.");
+        try {
+            System.out.print("Input Quantity: ");
+            String quantityCheck = Main.sigmaSkibidi.nextLine();
+
+            int quantity;
+
+            if (quantityCheck.isEmpty()) {
+                quantity = oldPurchaseData.getQty();
+            } else {
+                quantity = Integer.parseInt(quantityCheck);
+            }
+
+            if (quantity <= 0) {
+                System.out.println("Quantity can't be negative.");
+                return;
+            }
+
+            int totalPrice = selectedGameUpd.getPriceBuy() * quantity;
+
+            Purchase purchase = new Purchase(selectedCustUpd, selectedGameUpd, quantity,
+                    oldPurchaseData.getpurchaseDate(),
+                    totalPrice);
+            purchase.setidPurchase(purchaseID);
+            purchase.save();
+
+            listPurchase = purchase.getAll();
+            System.out.println("Purchase updated successfully.");
+            System.out.println("==================================================================");
+            System.out.printf("%-5s %-25s %-30s %-5s %-20s\n", 
+                        "ID", "Customer Name", "Game Title", "Qty", "Total Price");
+            System.out.println("==================================================================");
+            if (!listPurchase.isEmpty()) {
+                Purchase lastPurchase = listPurchase.get(listPurchase.size() - 1);
+                System.out.printf("%-5s %-25s %-30s %-5s %-20s\n", lastPurchase.getIdPurchase(),
+                        lastPurchase.getCustomer().getCustomerName(),
+                        lastPurchase.getGame().getGameTitle(), lastPurchase.getQty(),
+                        "Rp." + lastPurchase.getTotalPrice());
+            }
+            System.out.println("==================================================================");
+        } catch (NumberFormatException e) {
+            System.out.println("Quantity must be a number.");
             return;
         }
-
-        int totalPrice = selectedGameUpd.getPriceBuy() * quantity;
-
-        Purchase purchase = new Purchase(selectedCustUpd, selectedGameUpd, quantity, oldPurchaseData.getpurchaseDate(),
-                totalPrice);
-        purchase.setidPurchase(purchaseID);
-        purchase.save();
-
-        listPurchase = purchase.getAll();
-        System.out.println("Purchase updated successfully.");
-        System.out.println("==================================================================");
-        System.out.printf("%-5s %-25s %-30s %-5s %-20s\n", "ID", "Customer Name", "Game Title", "Qty", "Total Price");
-        System.out.println("==================================================================");
-        if (!listPurchase.isEmpty()) {
-            Purchase lastPurchase = listPurchase.get(listPurchase.size() - 1);
-            System.out.printf("%-5s %-25s %-25s %-5s %-20s\n", lastPurchase.getIdPurchase(),
-                    lastPurchase.getCustomer().getCustomerName(),
-                    lastPurchase.getGame().getGameTitle(), lastPurchase.getQty(),
-                    "Rp." + lastPurchase.getTotalPrice());
-        }
-        System.out.println("==================================================================");
-
     }
 
     public void deletePurchase() {

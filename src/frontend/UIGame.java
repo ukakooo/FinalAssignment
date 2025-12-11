@@ -19,8 +19,6 @@ public class UIGame {
             System.out.print(mainMenuText);
             int choice = Main.sigmaSkibidi.nextInt();
             Main.sigmaSkibidi.nextLine();
-            Game Game;
-            ArrayList<Game> listGame = new Game().getAll();
 
             switch (choice) {
                 case 1:

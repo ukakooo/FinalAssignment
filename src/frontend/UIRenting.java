@@ -64,7 +64,7 @@ public class UIRenting extends Transaction {
                     System.out.println("-----------------------------------------");
                     System.out.println("Game Price/Day : " + pricePerDay);
                     System.out.println("Duration       : " + days + " day(s)");
-                    System.out.println("Total Price    : " + totalPrice + " (Auto Calculated)");
+                    System.out.println("Total Price    : " + "Rp." + totalPrice + " (Auto Calculated)");
                     System.out.println("-----------------------------------------");
 
                     Renting renting = new Renting(cust, game, transDate, totalPrice, rentDate, returnDate);
@@ -109,7 +109,9 @@ public class UIRenting extends Transaction {
                 System.out.println("ID Not Found!");
                 return;
             }
+            System.out.println();
 
+            UICustomer frontCustomer = new UICustomer(); frontCustomer.showTables();
             System.out.print("Input ID Customer [" + rent.getCustomer().getIdCustomer() + "]: ");
             String strCust = Main.sigmaSkibidi.nextLine();
             if (!strCust.isEmpty()) {
@@ -117,7 +119,9 @@ public class UIRenting extends Transaction {
                 if (newCust.getIdCustomer() != 0)
                     rent.setCustomer(newCust);
             }
+            System.out.println();
 
+            UIGame frontGame = new UIGame(); frontGame.showTables();
             System.out.print("Input ID Game [" + rent.getGame().getIdGame() + "]: ");
             String strGame = Main.sigmaSkibidi.nextLine();
             if (!strGame.isEmpty()) {

@@ -1,9 +1,6 @@
 package frontend;
 
-import backend.*;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         // Main Menu
         Main main = new Main();
-        UIGenre frontGenre = new UIGenre();
         main.mainMenu();
     }
 
