@@ -51,6 +51,8 @@ public class UIGame extends UserInterface {
         Game Game;
         System.out.print("Input Game Title: ");
         String GameName = Main.sigmaSkibidi.nextLine();
+
+        UIGenre genre = new UIGenre(); genre.showTables();
         System.out.print("Input ID Genre: ");
         int GameGenre = Main.sigmaSkibidi.nextInt();
         System.out.print("Input buy price: ");
@@ -74,7 +76,7 @@ public class UIGame extends UserInterface {
         if (!listGame.isEmpty()) {
             Game lastGame = listGame.get(listGame.size() - 1);
             System.out.printf("%-5s %-30s %-25s %-12s %-12s %-25s %-20s\n", lastGame.getIdGame(),
-                    lastGame.getGameTitle(), lastGame.getGenre(), lastGame.getPriceBuy(), lastGame.getPriceRent(),
+                    lastGame.getGameTitle(), lastGame.getGenre().getGenreName(), lastGame.getPriceBuy(), lastGame.getPriceRent(),
                     lastGame.getPublisher(), lastGame.getStudio());
         }
         System.out.println("==================================================================");
