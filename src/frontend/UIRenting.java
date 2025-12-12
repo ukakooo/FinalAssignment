@@ -195,7 +195,7 @@ public class UIRenting extends UserInterface implements ITransaction {
     }
 
     @Override
-    private void showTables() {
+    public void showTables() {
         ArrayList<Renting> list = new Renting().getAll();
         System.out.println(
                 "=============================================================================================================");
