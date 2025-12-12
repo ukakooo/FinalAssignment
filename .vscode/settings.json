@@ -1,7 +1,15 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/opentelemetry-sdk-common-1.32.0.jar",
+            "lib/opentelemetry-api-1.32.0.jar",
+            "lib/mysql-connector-j-9.5.0.jar",
+            "lib/opentelemetry-context-1.56.0.jar"
+        ]
+    }
 }
